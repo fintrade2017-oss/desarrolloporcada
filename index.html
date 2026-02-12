@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Porcada - El Montecarlo del Pacífico | Masterplan 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark: #0a0a0a;
+            --deep-grey: #151515;
+            --white: #ffffff;
+            --copper: #b87333;
+            --green: #1b4d3e;
+            --royal: #002366;
+        }
+
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Montserrat', sans-serif; background-color: var(--dark); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* Header con logos y botón de traducción */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(10, 10, 10, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .translate-btn {
+            background: var(--gold);
+            color: var(--dark);
+            border: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .translate-btn:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Contenedor de Secciones */
+        section {
+            min-height: 100vh; 
+            width: 100vw; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            scroll-snap-align: start; 
+            position: relative; 
+            overflow: hidden; 
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            padding-top: 100px; /* Espacio para el header fijo */
+        }
+
+        .slide-container {
+            display: flex; 
+            width: 90%; 
+            max-width: 1500px; 
+            align-items: center; 
+            gap: 80px; 
+            z-index: 2; 
+            padding: 40px 0;
+        }
+
+        .text-box { flex: 1; color: var(--white); }
+        .image-box { 
+            flex: 1.4; 
+            height: 80vh; 
+            background-size: cover; 
+            background-position: center; 
+            border-radius: 4px; 
+            box-shadow: 30px 30px 0px var(--gold); 
+            position: relative;
+        }
+
+        .image-box::after {
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+        }
+
+        /* Tipografía */
+        h1 { font-family: 'Playfair Display', serif; font-size: 5rem; margin: 0; color: var(--gold); line-height: 1; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 25px; color: var(--gold); }
+        h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--white); margin-bottom: 15px; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        p { line-height: 1.8; font-weight: 300; font-size: 1.1rem; color: #e0e0e0; margin-bottom: 20px; }
+
+        /* Elementos UI */
+        .badge { display: inline-block; padding: 10px 20px; border: 1px solid var(--gold); color: var(--gold); font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+        .data-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+        .data-card { background: rgba(255,255,255,0.03); padding: 25px; border-left: 4px solid var(--gold); }
+        .data-card b { display: block; font-size: 1.5rem; color: var(--gold); margin-bottom: 5px; }
+        
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .feature-list li::before { content: "•"; color: var(--gold); font-size: 2rem; }
+
+        .nav-hint {
+            position: absolute; 
+            bottom: 30px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            color: var(--gold); 
+            font-size: 0.8rem; 
+            letter-spacing: 5px; 
+            animation: bounce 2s infinite; 
+            opacity: 0.7;
+        }
+
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);} 40% {transform: translate(-50%, -10px);} }
+
+        /* Animación suave entre secciones */
+        section { transition: opacity 0.5s ease-in-out; }
+
+        /* Footer con copyright */
+        .footer {
+            background-color: var(--dark);
+            color: var(--gold);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con logos y botón de traducción -->
+    <header class="header">
+        <div class="logo-container">
+            <!-- Rutas de los logos apuntando a la carpeta 'images' -->
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <img src="images/ecoresort.png" alt="Ecoresort" class="logo">
+        </div>
+        <button class="translate-btn" id="translateBtn">EN</button>
+    </header>
+
+    <!-- Ruta de la imagen de fondo apuntando a la carpeta 'images' -->
+    <section style="background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('images/foto1.jpg') center/cover;">
+        <div style="text-align: center; max-width: 1000px; padding: 0 20px;">
+            <div class="badge" data-es="Estrategia de Destino Internacional" data-en="International Destination Strategy">Estrategia de Destino Internacional</div>
+            <h1 data-es="La Porcada Island" data-en="La Porcada Island">La Porcada Island</h1>
+            <p style="font-size: 1.5rem; letter-spacing: 8px; margin-top: 20px; color: var(--gold);" data-es="EL MONTECARLO DEL PACÍFICO" data-en="THE MONTE CARLO OF THE PACIFIC">EL MONTECARLO DEL PACÍFICO</p>
+            <p style="max-width: 700px; margin: 40px auto; opacity: 0.8;" data-es="Un desarrollo disruptivo que fusiona la alta ingeniería CLT, soberanía alimentaria y el lujo del juego internacional en un santuario ecológico virgen." data-en="A disruptive development that combines high CLT engineering, food sovereignty and the luxury of international gaming in a pristine ecological sanctuary.">Un desarrollo disruptivo que fusiona la alta ingeniería CLT, soberanía alimentaria y el lujo del juego internacional en un santuario ecológico virgen.</p>
+        </div>
+        <div class="nav-hint" data-es="COMIENZO DEL RECORRIDO" data-en="START OF THE TOUR">COMIENZO DEL RECORRIDO</div>
+    </section>
+
+    <section style="background-color: var(--deep-grey);">
+        <div class="slide-container">
+            <div class="text-box">
+                <div class="badge" data-es="Infraestructura Crítica" data-en="Critical Infrastructure">Infraestructura Crítica</div>
+                <h2 data-es="Vivienda Olímpica Staff" data-en="Olympic Staff Housing">Vivienda Olímpica Staff</h2>
+                <p data-es="La eficiencia de la obra reside en el bienestar del capital humano. Construcción en el continente de un complejo plurifamiliar de alto rendimiento." data-en="The efficiency of the project lies in the well-being of human capital. Construction on the mainland of a high-performance multi-family complex.">La eficiencia de la obra reside en el bienestar del capital humano. Construcción en el continente de un complejo plurifamiliar de alto rendimiento.</p>
+                <div class="data-grid">
+                    <div class="data-card"><b>400 PAX</b><span data-es="Capacidad Habitacional" data-en="Housing Capacity">Capacidad Habitacional</span></div>
+                    <div class="data-card"><b>120 Unidades</b><span data-es="Apts de 1, 2 y 3 hab." data-en="1, 2 and 3 bed. apts">Apts de 1, 2 y 3 hab.</span></div>
+                    <div class="data-card"><b>CLT Modular</b><span data-es="Montaje en 90 días" data-en="Assembly in 90 days">Montaje en 90 días</span></div>
+                    <div class="data-card"><b>Estilo IKEA</b><span data-es="Interiorismo funcional" data-en="Functional interior design">Interiorismo funcional</span></div>
+                </div>
+                <p style="margin-top: 30px; font-style: italic;" data-es="Ubicación: Nodo Pan de Azúcar. Uso post-obra como residencia permanente de empleados." data-en="Location: Pan de Azúcar Node. Post-construction use as permanent employee residence.">Ubicación: Nodo Pan de Azúcar. Uso post-obra como residencia permanente de empleados.</p>
+            </div>
+            <div class="image-box" style="background-image: url('images/foto10.png');"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="slide-container">
+            <div class="image-box" style="background-image: url('images/foto3.png'); box-shadow: -30px 30px 0px var(--gold);"></div>
+            <div class="text-box">
+                <div class="badge" data-es="Operaciones Navales" data-en="Naval Operations">Operaciones Navales</div>
+                <h2 data-es="Ciclo de Suministro de Precisión" data-en="Precision Supply Cycle">Ciclo de Suministro de Precisión</h2>
+                <p data-es="Independencia total del continente mediante una flota propia y una ruta de transporte híbrida." data-en="Total independence from the continent through our own fleet and a hybrid transport route.">Independencia total del continente mediante una flota propia y una ruta de transporte híbrida.</p>
+                <ul class="feature-list">
+                    <li><b data-es="Ruta Balboa (Internacional):" data-en="Balboa Route (International):">Ruta Balboa (Internacional):</b> <span data-es="Los kits de CLT viajan 36h por mar para evitar daños en carretera." data-en="CLT kits travel 36h by sea to avoid road damage.">Los kits de CLT viajan 36h por mar para evitar daños en carretera.</span></li>
+                    <li><b data-es="Nodo Pan de Azúcar (Local):" data-en="Pan de Azúcar Node (Local):">Nodo Pan de Azúcar (Local):</b> <span data-es="Salto de 70 minutos para maquinaria, diésel y suministros frescos." data-en="70-minute jump for machinery, diesel and fresh supplies.">Salto de 70 minutos para maquinaria, diésel y suministros frescos.</span></li>
+                    <li><b data-es="3 Gavarras LST:" data-en="3 LST Gavarras:">3 Gavarras LST:</b> <span data-es="Embarcaciones autopropulsadas con rampa frontal para descarga en playa." data-en="Self-propelled vessels with front ramp for beach unloading.">Embarcaciones autopropulsadas con rampa frontal para descarga en playa.</span></li>
+                </ul>
+                <div class="data-card" style="margin-top: 20px;">
+                    <b data-es="KPI Objetivo:" data-en="Target KPI:">KPI Objetivo:</b> <span data-es="Carga 20' + Tránsito 30' + Descarga 20'. Máxima rotación de activos." data-en="Loading 20' + Transit 30' + Unloading 20'. Maximum asset rotation.">Carga 20' + Tránsito 30' + Descarga 20'. Máxima rotación de activos.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--royal);">
+        <div class="slide-container">
+            <div class="text-box">
+                <div class="badge" style="border-color: white; color: white;" data-es="The Gaming Destination" data-en="The Gaming Destination">The Gaming Destination</div>
+                <h2 data-es="Casino & Resort de Élite" data-en="Elite Casino & Resort">Casino & Resort de Élite</h2>
+                <p data-es="Inspirado en la sofisticación de Mónaco, diseñado bajo la arquitectura sostenible del siglo XXI." data-en="Inspired by the sophistication of Monaco, designed under 21st century sustainable architecture.">Inspirado en la sofisticación de Mónaco, diseñado bajo la arquitectura sostenible del siglo XXI.</p>
+                <div class="data-grid">
+                    <div class="data-card"><b>Casino VIP</b><span data-es="Salones privados de alta apuesta" data-en="Private high-stakes rooms">Salones privados de alta apuesta</span></div>
+                    <div class="data-card"><b>50 Villas</b><span data-es="Overwater con suelos de cristal" data-en="Overwater with glass floors">Overwater con suelos de cristal</span></div>
+                    <div class="data-card"><b>150 Suites</b><span data-es="Hotel Boutique de Gran Lujo" data-en="Grand Luxury Boutique Hotel">Hotel Boutique de Gran Lujo</span></div>
+                    <div class="data-card"><b>Mansiones</b><span data-es="2 Villas Reales (20 suites c/u)" data-en="2 Royal Villas (20 suites each)">2 Villas Reales (20 suites c/u)</span></div>
+                </div>
+                <p style="margin-top: 20px;" data-es="Cada estructura de CLT cuenta con aislamiento acústico superior y diseño de gran luz para el área de Casino." data-en="Each CLT structure has superior acoustic insulation and large light design for the Casino area.">Cada estructura de CLT cuenta con aislamiento acústico superior y diseño de gran luz para el área de Casino.</p>
+            </div>
+            <div class="image-box" style="background-image: url('images/foto4.jpg'); border: 1px solid white;"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="slide-container">
+            <div class="image-box" style="background-image: url('images/foto5.png');"></div>
+            <div class="text-box">
+                <div class="badge" data-es="Arte & Tecnología" data-en="Art & Technology">Arte & Tecnología</div>
+                <h2 data-es="Suelos Líquidos e Inmersivos" data-en="Liquid and Immersive Floors">Suelos Líquidos e Inmersivos</h2>
+                <p data-es="El diseño interior utiliza resinas de alta ingeniería para conectar al huésped con el mar." data-en="The interior design uses high engineering resins to connect the guest with the sea.">El diseño interior utiliza resinas de alta ingeniería para conectar al huésped con el mar.</p>
+                <ul class="feature-list">
+                    <li><b data-es="Epoxy Artístico:" data-en="Artistic Epoxy:">Epoxy Artístico:</b> <span data-es="Capas múltiples que recrean los manglares y fondos coralinos." data-en="Multiple layers recreating mangroves and coral bottoms.">Capas múltiples que recrean los manglares y fondos coralinos.</span></li>
+                    <li><b data-es="Membrana Elastomérica:" data-en="Elastomeric Membrane:">Membrana Elastomérica:</b> <span data-es="Absorción de micro-movimientos naturales del CLT." data-en="Absorption of natural micro-movements of CLT.">Absorción de micro-movimientos naturales del CLT.</span></li>
+                    <li><b data-es="Bioluminiscencia LED:" data-en="LED Bioluminescence:">Bioluminiscencia LED:</b> <span data-es="Iluminación sub-epóxica que imita el plancton nocturno de Chiriquí." data-en="Sub-epoxy lighting that mimics the nocturnal plankton of Chiriquí.">Iluminación sub-epóxica que imita el plancton nocturno de Chiriquí.</span></li>
+                    <li><b data-es="Sanitarios TOTO:" data-en="TOTO Sanitary:">Sanitarios TOTO:</b> <span data-es="Lo último en tecnología de confort japonés." data-en="The latest in Japanese comfort technology.">Lo último en tecnología de confort japonés.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--deep-grey);">
+        <div class="slide-container">
+            <div class="text-box">
+                <div class="badge" data-es="Aviation Hub" data-en="Aviation Hub">Aviation Hub</div>
+                <h2 data-es="E-Runway La Porcada" data-en="E-Runway La Porcada">E-Runway La Porcada</h2>
+                <p data-es="Reforma de la pista existente bajo normativa ambiental internacional (E-Grade)." data-en="Renovation of the existing runway under international environmental regulations (E-Grade).">Reforma de la pista existente bajo normativa ambiental internacional (E-Grade).</p>
+                <div class="data-card">
+                    <b data-es="Pavimentos Permeables:" data-en="Permeable Pavements:">Pavimentos Permeables:</b> <span data-es="Tecnología de estabilización de suelos orgánica que permite la filtración de agua al acuífero sin contaminar." data-en="Organic soil stabilization technology that allows water filtration to the aquifer without contamination.">Tecnología de estabilización de suelos orgánica que permite la filtración de agua al acuífero sin contaminar.</span>
+                </div>
+                <ul class="feature-list" style="margin-top: 25px;">
+                    <li data-es="Capacidad para Jets Privados y Turbohélices regionales." data-en="Capacity for Private Jets and regional Turboprops.">Capacidad para Jets Privados y Turbohélices regionales.</li>
+                    <li data-es="Iluminación de pista alimentada por energía solar." data-en="Runway lighting powered by solar energy.">Iluminación de pista alimentada por energía solar.</li>
+                    <li data-es="Terminal ejecutiva integrada en el bosque de manglar." data-en="Executive terminal integrated in the mangrove forest.">Terminal ejecutiva integrada en el bosque de manglar.</li>
+                </ul>
+            </div>
+            <div class="image-box" style="background-image: url('images/foto6.png'); box-shadow: -30px 30px 0px var(--gold);"></div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--green);">
+        <div class="slide-container">
+            <div class="image-box" style="background-image: url('images/foto7.png');"></div>
+            <div class="text-box">
+                <div class="badge" style="border-color: #2ecc71; color: #2ecc71;" data-es="Blue Economy" data-en="Blue Economy">Blue Economy</div>
+                <h2 data-es="Eco-Marina & Santuario" data-en="Eco-Marina & Sanctuary">Eco-Marina & Santuario</h2>
+                <p data-es="Protección activa del manglar como barrera natural y activo de belleza incalculable." data-en="Active protection of the mangrove as a natural barrier and asset of incalculable beauty.">Protección activa del manglar como barrera natural y activo de belleza incalculable.</p>
+                <div class="data-grid">
+                    <div class="data-card"><b>Marina Flotante</b><span data-es="Pantalanes de bajo impacto sónico" data-en="Low sonic impact docks">Pantalanes de bajo impacto sónico</span></div>
+                    <div class="data-card"><b>Zero Discharge</b><span data-es="Sistemas de succión para yates" data-en="Suction systems for yachts">Sistemas de succión para yates</span></div>
+                    <div class="data-card"><b>Pasarelas CLT</b><span data-es="Elevadas sobre la marea" data-en="Elevated over the tide">Elevadas sobre la marea</span></div>
+                    <div class="data-card"><b>Biodiversidad</b><span data-es="Mantenimiento de reserva virgen" data-en="Maintenance of virgin reserve">Mantenimiento de reserva virgen</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--dark);">
+        <div class="slide-container">
+            <div class="text-box">
+                <div class="badge" style="border-color: var(--copper); color: var(--copper);" data-es="Electrocultura Ancestral" data-en="Ancestral Electroculture">Electrocultura Ancestral</div>
+                <h2 data-es="Soberanía Alimentaria" data-en="Food Sovereignty">Soberanía Alimentaria</h2>
+                <p data-es="Un sistema de alimentación propio que elimina la dependencia logística y los productos químicos." data-en="A self-sufficient food system that eliminates logistical dependency and chemicals.">Un sistema de alimentación propio que elimina la dependencia logística y los productos químicos.</p>
+                <div class="data-card" style="border-color: var(--copper); background: rgba(184, 115, 51, 0.05);">
+                    <b data-es="Sin Fertilizantes:" data-en="Without Fertilizers:">Sin Fertilizantes:</b> <span data-es="Huertos orgánicos potenciados por antenas de cobre que canalizan la energía atmosférica para vitalizar el suelo." data-en="Organic gardens enhanced by copper antennas that channel atmospheric energy to vitalize the soil.">Huertos orgánicos potenciados por antenas de cobre que canalizan la energía atmosférica para vitalizar el suelo.</span>
+                </div>
+                <div class="data-grid">
+                    <div class="data-card"><b>Vacas Brahman</b><span data-es="Rebaño propio en isla" data-en="Own herd on island">Rebaño propio en isla</span></div>
+                    <div class="data-card"><b>Farm-to-Table</b><span data-es="Kilómetro 0 certificado" data-en="Certified Kilometer 0">Kilómetro 0 certificado</span></div>
+                    <div class="data-card"><b>Marisco Local</b><span data-es="Pesca sostenible diaria" data-en="Daily sustainable fishing">Pesca sostenible diaria</span></div>
+                </div>
+            </div>
+            <div class="image-box" style="background-image: url('images/foto8.png'); box-shadow: 30px 30px 0px var(--copper);"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="slide-container">
+            <div class="image-box" style="background-image: url('images/foto9.png');"></div>
+            <div class="text-box">
+                <div class="badge" data-es="Project Timeline" data-en="Project Timeline">Project Timeline</div>
+                <h2 data-es="Apertura Fast-Track" data-en="Fast-Track Opening">Apertura Fast-Track</h2>
+                <p data-es="Cronograma agresivo de 18 meses mediante solapamiento de fases constructivas." data-en="Aggressive 18-month schedule through overlapping construction phases.">Cronograma agresivo de 18 meses mediante solapamiento de fases constructivas.</p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px; color: white;">
+                    <tr style="border-bottom: 2px solid var(--gold); text-align: left;">
+                        <th style="padding: 15px;" data-es="Fase" data-en="Phase">Fase</th>
+                        <th style="padding: 15px;" data-es="Personal" data-en="Staff">Personal</th>
+                        <th style="padding: 15px;" data-es="Hito" data-en="Milestone">Hito</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #333;">
+                        <td style="padding: 15px;" data-es="Villa Staff & Logística" data-en="Staff Villa & Logistics">Villa Staff & Logística</td>
+                        <td style="padding: 15px;">80 pax</td>
+                        <td style="padding: 15px;" data-es="Mes 3" data-en="Month 3">Mes 3</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #333;">
+                        <td style="padding: 15px;" data-es="Estructura CLT Masiva" data-en="Massive CLT Structure">Estructura CLT Masiva</td>
+                        <td style="padding: 15px;">160 pax</td>
+                        <td style="padding: 15px;" data-es="Mes 12" data-en="Month 12">Mes 12</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 15px;" data-es="Interiores & Casino" data-en="Interiors & Casino">Interiores & Casino</td>
+                        <td style="padding: 15px;">140 pax</td>
+                        <td style="padding: 15px;" data-es="Mes 18" data-en="Month 18">Mes 18</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('images/foto9.png') center/cover;">
+        <div style="text-align: center;">
+            <h2 style="font-size: 4rem;" data-es="The Future is Porcada" data-en="The Future is Porcada">The Future is Porcada</h2>
+            <p style="letter-spacing: 5px;" data-es="SOSTENIBILIDAD | EXCLUSIVIDAD | TECNOLOGÍA" data-en="SUSTAINABILITY | EXCLUSIVITY | TECHNOLOGY">SOSTENIBILIDAD | EXCLUSIVIDAD | TECNOLOGÍA</p>
+            <div style="margin-top: 50px;">
+                <p data-es="Presentado por la Dirección de Logística y Estrategia." data-en="Presented by the Logistics and Strategy Directorate.">Presentado por la Dirección de Logística y Estrategia.</p>
+                <div class="badge" style="margin-top: 20px;" data-es="Panamá 2026" data-en="Panama 2026">Panamá 2026</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer con copyright -->
+    <footer class="footer">
+        <p>&copy; 2026 Ecoresort la Porcada by Takyma Investment Pioneer</p>
+    </footer>
+
+    <script>
+        // Esperar a que todo el contenido de la página esté cargado
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("El script se ha cargado correctamente.");
+
+            // Función de traducción
+            const translateBtn = document.getElementById('translateBtn');
+            if (translateBtn) {
+                translateBtn.addEventListener('click', function() {
+                    console.log("¡Botón de traducción presionado!"); // Mensaje de depuración
+                    
+                    const currentLang = document.documentElement.lang;
+                    const newLang = currentLang === 'es' ? 'en' : 'es';
+                    
+                    // Cambiar el idioma del documento
+                    document.documentElement.lang = newLang;
+                    
+                    // Actualizar el texto del botón
+                    this.textContent = newLang === 'es' ? 'EN' : 'ES';
+                    
+                    // Traducir todos los elementos con atributos data-es y data-en
+                    document.querySelectorAll('[data-es][data-en]').forEach(element => {
+                        element.textContent = element.getAttribute(`data-${newLang}`);
+                    });
+                    console.log(`Idioma cambiado a: ${newLang}`); // Mensaje de depuración
+                });
+            } else {
+                console.error("ERROR: No se encontró el botón con el ID 'translateBtn'.");
+            }
+
+            // Sistema de scroll suave por secciones
+            document.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY;
+                const currentScroll = window.scrollY;
+                const sectionHeight = window.innerHeight;
+                let targetScroll = delta > 0 ? 
+                    Math.min(currentScroll + sectionHeight, document.body.scrollHeight - sectionHeight) : 
+                    Math.max(currentScroll - sectionHeight, 0);
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            }, { passive: false });
+        });
+    </script>
+</body>
+</html>
